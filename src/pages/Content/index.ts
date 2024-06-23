@@ -56,10 +56,8 @@ function filterStats(stats: any) {
 }
 
 function getCyperText(url: string) {
-  console.log('url', url);
   var cyperText: any = '';
   var split = url.split('https://www.upwork.com/freelancers/');
-  console.log('split', split);
   if (split.length > 1) cyperText = split[1];
   else return '';
   cyperText = cyperText?.split('/')[0];
@@ -73,12 +71,10 @@ function statElem(key: string, value: any) {
 
 function main() {
   document.arrive('[itemprop="name"]', async (e: any) => {
-    console.log('e', e);
     var previewMode = document.querySelectorAll('.air3-slider-header a');
     var url = window.location.href;
     if (previewMode.length > 0) url = previewMode[0].href;
     var cyperText = getCyperText(url);
-    console.log('cyperText', cyperText);
     if (cyperText === '') {
       console.log('cyperText not found');
       return;
@@ -87,7 +83,6 @@ function main() {
     var profileDetails = await getProfileDetails(cyperText);
     var stats = getStats(profileDetails);
     var filteredStats = filterStats(stats);
-    console.log('filteredStats', filteredStats);
 
     if (filteredStats) {
       insertStats(filteredStats);
